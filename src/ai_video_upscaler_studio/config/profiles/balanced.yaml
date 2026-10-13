@@ -1,0 +1,14 @@
+# Balanced profile — 4x Real-ESRGAN, tiled for 8GB VRAM cards.
+execution:
+  provider: cuda
+  tile_size: 512
+  tile_overlap: 32
+  fp16: true
+  max_vram_fraction: 0.80
+encode:
+  codec: hevc_nvenc
+  crf: 18
+  preset: p5
+  audio: copy
+scale: 4
+model_id: realesrgan-x4plus
