@@ -1,0 +1,65 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-video-upscaler-studio"
+version = "0.6.3"
+description = "AI video upscaler generator — Windows desktop studio for real-time and batch neural video upscaling (Real-ESRGAN, SwinIR, BasicVSR++, custom ONNX/TensorRT engines)."
+readme = "docs/ARCHITECTURE.md"
+requires-python = ">=3.11,<3.13"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "ai-video-upscaler-studio maintainers" }]
+keywords = ["video", "upscaler", "super-resolution", "real-esrgan", "onnx", "tensorrt", "ffmpeg", "windows"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Win32 (MS Windows)",
+  "Intended Audience :: End Users/Desktop",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Multimedia :: Video :: Non-Linear Editor",
+]
+
+dependencies = [
+  "PySide6>=6.7,<6.9",
+  "numpy>=1.26,<2.2",
+  "opencv-python-headless>=4.9,<4.12",
+  "onnxruntime-gpu>=1.18,<1.21",
+  "av>=12.3,<14",
+  "pydantic>=2.7,<3",
+  "pydantic-settings>=2.3,<3",
+  "structlog>=24.1,<25",
+  "typer>=0.12,<0.14",
+  "rich>=13.7,<14",
+  "psutil>=5.9,<7",
+  "huggingface-hub>=0.24,<0.28",
+]
+
+[project.optional-dependencies]
+tensorrt = ["tensorrt>=10.1,<11", "pycuda>=2024.1"]
+dev = ["pytest>=8.2", "pytest-qt>=4.4", "ruff>=0.6", "mypy>=1.11", "hypothesis>=6.108"]
+
+[project.scripts]
+avus = "ai_video_upscaler_studio.cli:app"
+avus-studio = "ai_video_upscaler_studio.bootstrap.launcher:main"
+
+[project.urls]
+Homepage = "https://github.com/ai-video-upscaler-studio/ai-video-upscaler-studio"
+Issues   = "https://github.com/ai-video-upscaler-studio/ai-video-upscaler-studio/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ai_video_upscaler_studio"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = ["gpu: requires CUDA-capable device", "slow: long-running integration"]
