@@ -1,0 +1,1 @@
+"""Domain models — pydantic schemas + engine wrappers."""
