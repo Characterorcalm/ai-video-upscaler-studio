@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# Model weights & caches (do NOT commit — multi-GB binaries)
+models/weights/*.onnx
+models/weights/*.engine
+models/weights/*.pth
+models/weights/*.safetensors
+.cache/huggingface/
+.cache/avus/
+
+# Runtime artefacts
+logs/
+*.log
+temp/
+render_out/
+frames_tmp/
+*.mp4
+*.mkv
+*.mov
+!docs/**/*.mp4
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+desktop.ini
+
+# Windows
+*.pdb
+*.ilk
+*.exp
