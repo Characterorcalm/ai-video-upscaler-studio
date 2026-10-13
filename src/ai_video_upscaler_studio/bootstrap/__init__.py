@@ -1,0 +1,1 @@
+"""Bootstrap layer — process entry points and single-instance guard."""
