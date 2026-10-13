@@ -1,0 +1,1 @@
+"""Config layer — pydantic-settings + YAML profile loader."""
